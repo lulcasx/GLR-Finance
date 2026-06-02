@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GLR Finance</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <script>
+alert("HTML carregado");
+</script>
+</head>
+<body>
+
+    <header>
+        <h1>GLR Finance</h1>
+        <p>Controle financeiro inteligente</p>
+    </header>
+
+    <main>
+
+        <section class="saldo">
+            <h2>Saldo Atual</h2>
+            <h1 id="saldoAtual">R$ 0,00</h1>
+            <section class="movimentacoes">
+
+    <h2>Adicionar Receita</h2>
+
+    <input
+        type="number"
+        id="receita"
+        placeholder="Valor da receita"
+    >
+
+    <button onclick="adicionarReceita()">
+        Adicionar Receita
+    </button>
+
+    <h2>Adicionar Despesa</h2>
+
+    <input
+        type="text"
+        id="descricaoDespesa"
+        placeholder="Descrição"
+    >
+
+    <input
+        type="number"
+        id="despesa"
+        placeholder="Valor da despesa"
+    >
+
+    <button onclick="adicionarDespesa()">
+        Adicionar Despesa
+    </button>
+
+    </section>
+
+        </section>
+
+        <section class="cards">
+            <div class="card receita">
+                <h3>Receitas</h3>
+                 <p id="totalReceitas">R$ 0,00</p>
+            </div>
+
+            <div class="card despesa">
+                <h3>Despesas</h3>
+                 <p id="totalDespesas">R$ 0,00</p>
+            </div>
+        </section>
+
+        <section class="metas">
+            <h2>Metas Financeiras</h2>
+
+            <div class="meta">
+                <span>Reserva de Emergência</span>
+                <progress value="60" max="100"></progress>
+            </div>
+
+            <div class="meta">
+                <span>Viagem</span>
+                <progress value="35" max="100"></progress>
+            </div>
+
+            <div class="meta">
+                <span>Carro</span>
+                <progress value="15" max="100"></progress>
+            </div>
+        </section>
+
+        <section class="historico">
+
+            <h2>Últimas Despesas</h2>
+
+            <ul id="listaDespesas">
+
+            </ul>
+
+        </section>
+
+        <section class="grafico">
+            <h2>Gráfico Financeiro</h2>
+            <div class="grafico-fake">
+                <div style="height: 60%;"></div>
+                <div style="height: 80%;"></div>
+                <div style="height: 40%;"></div>
+                <div style="height: 95%;"></div>
+                <div style="height: 70%;"></div>
+                <div style="height: 50%;"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="js/script.js"></script>
+
+</body>
+</html>
