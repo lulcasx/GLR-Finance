@@ -3,8 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GLR Finance - Cadastro</title>
+    <title>GLR Finance - Login</title>
     <link rel="stylesheet" href="style.css">
+
+    <link rel="manifest" href="manifest.json">
+
+    <meta name="theme-color" content="#2c3e50">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
 </head>
 <body>
 
@@ -13,15 +19,9 @@
         <div class="auth-card">
 
             <h1>GLR Finance</h1>
-            <p>Crie sua conta</p>
+            <p>Entre na sua conta</p>
 
-            <form>
-
-                <input
-                    type="text"
-                    placeholder="Nome completo"
-                    required
-                >
+            <form action="index.html">
 
                 <input
                     type="email"
@@ -35,21 +35,15 @@
                     required
                 >
 
-                <input
-                    type="password"
-                    placeholder="Confirmar senha"
-                    required
-                >
-
                 <button type="submit">
-                    Cadastrar
+                    Entrar
                 </button>
 
             </form>
 
             <div class="auth-links">
-                <a href="login.html">
-                    Já possuo conta
+                <a href="cadastro.html">
+                    Criar conta
                 </a>
             </div>
 
