@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GLR Finance | Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#111111">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+<body class="app-page">
+    <aside class="sidebar">
+        <a class="brand" href="index.html" aria-label="GLR Finance">
+            <span class="brand-mark">G</span>
+            <div>
+                <strong>GLR Finance</strong>
+                <small>Controle inteligente</small>
+            </div>
+        </a>
+
+        <nav class="menu" aria-label="Menu principal">
+            <a href="#resumo" class="active">Resumo</a>
+            <a href="#movimentacoes">Movimentações</a>
+            <a href="#metas">Metas</a>
+            <a href="#graficos">Gráficos</a>
+        </nav>
+
+        <div class="sidebar-card">
+            <span>Usuário conectado</span>
+            <strong id="usuarioNome">GLR</strong>
+            <button class="btn btn-ghost full" id="btnSair" type="button">Sair</button>
+        </div>
+    </aside>
+
+    <main class="dashboard">
+        <header class="topbar">
+            <div>
+                <p class="eyebrow">Painel financeiro</p>
+                <h1>Olá, <span id="saudacaoUsuario">Lucas</span> 👋</h1>
+                <p>Gerencie receitas, despesas e metas em um só lugar.</p>
+            </div>
+            <div class="topbar-actions">
+                <button class="btn btn-secondary" id="btnExportar" type="button">Exportar dados</button>
+                <button class="btn btn-primary" data-open-modal="transacao" type="button">Nova movimentação</button>
+            </div>
+        </header>
+
+        <section class="summary-grid" id="resumo">
+            <article class="summary-card balance-card">
+                <span>Saldo atual</span>
+                <strong id="saldoAtual">R$ 0,00</strong>
+                <small id="saldoStatus">Comece adicionando uma movimentação.</small>
+            </article>
+            <article class="summary-card">
+                <span>Total de receitas</span>
+                <strong id="totalReceitas">R$ 0,00</strong>
+                <small>Entradas registradas</small>
+            </article>
+            <article class="summary-card">
+                <span>Total de despesas</span>
+                <strong id="totalDespesas">R$ 0,00</strong>
+                <small>Saídas registradas</small>
+            </article>
+            <article class="summary-card">
+                <span>Economia</span>
+                <strong id="taxaEconomia">0%</strong>
+                <small>Receitas menos despesas</small>
+            </article>
+        </section>
+
+        <section class="panel-grid">
+            <article class="panel" id="movimentacoes">
+                <div class="panel-header">
+                    <div>
+                        <p class="eyebrow">Fluxo de caixa</p>
+                        <h2>Movimentações</h2>
+                    </div>
+                    <div class="filter-group">
+                        <button class="chip active" data-filter="todos" type="button">Todos</button>
+                        <button class="chip" data-filter="receita" type="button">Receitas</button>
+                        <button class="chip" data-filter="despesa" type="button">Despesas</button>
+                    </div>
+                </div>
+                <form class="quick-form" id="formTransacaoInline">
+                    <select id="tipoTransacaoInline" aria-label="Tipo da movimentação">
+                        <option value="receita">Receita</option>
+                        <option value="despesa">Despesa</option>
+                    </select>
+                    <input id="descricaoInline" type="text" placeholder="Descrição" required>
+                    <input id="categoriaInline" type="text" placeholder="Categoria" required>
+                    <input id="valorInline" type="number" min="0.01" step="0.01" placeholder="Valor" required>
+                    <button class="btn btn-dark" type="submit">Adicionar</button>
+                </form>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Descrição</th>
+                                <th>Categoria</th>
+                                <th>Data</th>
+                                <th>Valor</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="listaTransacoes"></tbody>
+                    </table>
+                </div>
+                <div class="empty-state" id="semTransacoes">Nenhuma movimentação cadastrada.</div>
+            </article>
+
+            <article class="panel goals-panel" id="metas">
+                <div class="panel-header">
+                    <div>
+                        <p class="eyebrow">Objetivos</p>
+                        <h2>Metas financeiras</h2>
+                    </div>
+                    <button class="btn btn-secondary" data-open-modal="meta" type="button">Nova meta</button>
+                </div>
+                <div id="listaMetas" class="goals-list"></div>
+                <div class="empty-state" id="semMetas">Cadastre uma meta para acompanhar seu progresso.</div>
+            </article>
+        </section>
+
+        <section class="panel" id="graficos">
+            <div class="panel-header">
+                <div>
+                    <p class="eyebrow">Análise visual</p>
+                    <h2>Gráfico financeiro</h2>
+                </div>
+                <small id="graficoLegenda">Receitas x despesas</small>
+            </div>
+            <div class="chart" id="graficoFinanceiro" aria-label="Gráfico financeiro"></div>
+        </section>
+    </main>
+
+    <button class="floating-btn" data-open-modal="transacao" type="button" aria-label="Adicionar movimentação">+</button>
+
+    <div class="modal" id="modalTransacao" aria-hidden="true">
+        <div class="modal-content">
+            <button class="modal-close" data-close-modal type="button">×</button>
+            <p class="eyebrow">Nova movimentação</p>
+            <h2>Adicionar receita ou despesa</h2>
+            <form id="formTransacaoModal" class="stack-form">
+                <label>Tipo
+                    <select id="tipoTransacaoModal">
+                        <option value="receita">Receita</option>
+                        <option value="despesa">Despesa</option>
+                    </select>
+                </label>
+                <label>Descrição
+                    <input id="descricaoModal" type="text" placeholder="Ex: Salário, mercado, faculdade" required>
+                </label>
+                <label>Categoria
+                    <input id="categoriaModal" type="text" placeholder="Ex: Trabalho, alimentação" required>
+                </label>
+                <label>Valor
+                    <input id="valorModal" type="number" min="0.01" step="0.01" placeholder="0,00" required>
+                </label>
+                <button class="btn btn-primary full" type="submit">Salvar movimentação</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="modalMeta" aria-hidden="true">
+        <div class="modal-content">
+            <button class="modal-close" data-close-modal type="button">×</button>
+            <p class="eyebrow">Nova meta</p>
+            <h2>Criar meta financeira</h2>
+            <form id="formMeta" class="stack-form">
+                <label>Nome da meta
+                    <input id="nomeMeta" type="text" placeholder="Ex: Reserva de emergência" required>
+                </label>
+                <label>Valor alvo
+                    <input id="valorAlvoMeta" type="number" min="1" step="0.01" placeholder="Ex: 5000" required>
+                </label>
+                <label>Valor atual
+                    <input id="valorAtualMeta" type="number" min="0" step="0.01" placeholder="Ex: 750" required>
+                </label>
+                <button class="btn btn-primary full" type="submit">Salvar meta</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+    <script src="js/script.js"></script>
+</body>
+</html>

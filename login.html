@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GLR Finance | Login</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#111111">
+</head>
+<body class="auth-page">
+    <main class="auth-shell">
+        <section class="auth-hero">
+            <span class="brand-mark large">G</span>
+            <p class="eyebrow">GLR Finance</p>
+            <h1>Seu dinheiro organizado com um visual mais profissional.</h1>
+            <p>Entre para acessar seu dashboard, metas, gráficos e movimentações.</p>
+        </section>
+
+        <section class="auth-card">
+            <h2>Entrar</h2>
+            <p>Acesse sua conta local do GLR Finance.</p>
+            <form id="formLogin" class="stack-form">
+                <label>E-mail
+                    <input id="loginEmail" type="email" placeholder="seuemail@email.com" required>
+                </label>
+                <label>Senha
+                    <input id="loginSenha" type="password" placeholder="Sua senha" required>
+                </label>
+                <button class="btn btn-primary full" type="submit">Entrar</button>
+            </form>
+            <div class="auth-links">
+                <a href="cadastro.html">Criar conta</a>
+                <a href="index.html" id="entrarDemo">Entrar como demonstração</a>
+            </div>
+        </section>
+    </main>
+    <div class="toast" id="toast"></div>
+    <script src="js/script.js"></script>
+</body>
+</html>
